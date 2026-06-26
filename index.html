@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arkeologi Vertikal — WebGIS 3D Kotagede</title>
+  
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Modular CSS -->
+  <link rel="stylesheet" href="assets/css/variables.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/sidebar.css" />
+  <link rel="stylesheet" href="assets/css/map.css" />
+  <link rel="stylesheet" href="assets/css/panel.css" />
+  <link rel="stylesheet" href="assets/css/drawer.css" />
+  <link rel="stylesheet" href="assets/css/responsive.css" />
+</head>
+<body>
+<div class="shell">
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">▣</div>
+      <div>
+        <span class="brand-text">Arkeologi Vertikal</span>
+        <span class="brand-sub">— WebGIS 3D Kotagede</span>
+      </div>
+    </div>
+    <nav class="topnav">
+      <a href="#" class="active">Peta &amp; Model</a>
+      <a href="#" data-drawer="drawerMetodologi">Metodologi</a>
+      <a href="#" data-drawer="drawerTentang">Tentang</a>
+    </nav>
+    <div class="top-meta">SIG Terapan · Kotagede, Yogyakarta</div>
+  </header>
+
+  <div class="body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sb-search">
+        <input type="text" id="searchInput" placeholder="Cari situs, kawasan, bangunan..." />
+        <div id="searchResults" class="search-results"></div>
+      </div>
+
+      <div class="sb-head">Layer Control</div>
+
+      <div class="layer-group" id="group2025">
+        <div class="lg-title">OSM 2025</div>
+        <div class="layer-row">
+          <div class="lr-left"><div class="swatch" style="background:#8a2a1a"></div>Bangunan heritage</div>
+          <button class="tog" data-layer="heritage"></button>
+        </div>
+        <div class="layer-row">
+          <div class="lr-left"><div class="swatch" style="background:#8a5c0a"></div>Bangunan umum</div>
+          <button class="tog" data-layer="buildings"></button>
+        </div>
+        <div class="layer-row">
+          <div class="lr-left"><div class="swatch" style="background:#1a4a7a"></div>Sungai / jalan air</div>
+          <button class="tog" data-layer="rivers"></button>
+        </div>
+      </div>
+
+      <div class="layer-group" id="group1600">
+        <div class="lg-title">Rekonstruksi 1600</div>
+        <div class="layer-row">
+          <div class="lr-left"><div class="swatch" style="background:#5a2a0a"></div>Pusat kerajaan</div>
+          <button class="tog" data-layer="royal"></button>
+        </div>
+        <div class="layer-row">
+          <div class="lr-left"><div class="swatch" style="background:#3d6614"></div>Permukiman lama</div>
+          <button class="tog" data-layer="settlement"></button>
+        </div>
+        <div class="layer-row">
+          <div class="lr-left"><div class="swatch" style="background:#6b5a3a; opacity:.8"></div>Batas kawasan</div>
+          <button class="tog" data-layer="boundary"></button>
+        </div>
+      </div>
+
+      <div class="sb-head">Lokasi Penting</div>
+      <div class="loc-list" id="locList"></div>
+    </aside>
+
+    <!-- Map -->
+    <div class="map-wrap">
+      <div id="map"></div>
+
+      <div class="era-bar">
+        <div class="era-btns">
+          <button class="era-btn active" data-era="1600">Mataram 1600</button>
+          <button class="era-btn" data-era="2025">Kotagede 2025</button>
+        </div>
+        <div class="basemap-label" id="basemapLabel">🗺 Peta Historis (Stamen Watercolor)</div>
+      </div>
+
+      <div class="time-bar">
+        <div class="time-row">
+          <span class="time-lbl">Tahun</span>
+          <span class="yr-chip" id="yrChip">1600</span>
+          <input type="range" id="slider" min="1600" max="2025" value="1600" step="5" />
+          <span class="yr-chip">2025</span>
+        </div>
+        <div class="tick-row">
+          <span>1600</span><span>1650</span><span>1700</span><span>1750</span>
+          <span>1800</span><span>1850</span><span>1900</span><span>1950</span><span>2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right panel -->
+    <aside class="right-panel" id="rightPanel">
+      <div id="emptyState" class="empty-state">
+        <span>🗺</span>
+        <p>Klik marker di peta atau pilih lokasi di sebelah kiri untuk melihat model 3D dan informasi lokasi.</p>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<!-- Drawer overlay -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- Drawer: Metodologi -->
+<div class="drawer" id="drawerMetodologi">
+  <div class="drawer-head">
+    <h2>Metodologi</h2>
+    <button class="drawer-close" data-close="drawerMetodologi">✕</button>
+  </div>
+  <div class="drawer-body">
+    <h3>Pendekatan</h3>
+    <p>Proyek ini menggunakan pendekatan <strong>Historical GIS</strong> — menggabungkan data spasial masa kini yang terverifikasi dengan rekonstruksi interpretatif untuk era historis. Dua layer temporal dihadirkan untuk memungkinkan perbandingan perubahan lanskap.</p>
+
+    <h3>Alur Pengolahan Data</h3>
+    <ol class="step-list">
+      <li><span class="step-num">1</span><div><strong>Pengumpulan data OSM (2025)</strong> — Export bangunan, jalan, dan sungai dari OpenStreetMap via QuickOSM plugin di QGIS. Validasi lapangan untuk objek heritage utama.</div></li>
+      <li><span class="step-num">2</span><div><strong>Georeferencing peta historis</strong> — Peta Belanda 1:25.000 era 1900-an (sumber: KITLV Leiden) di-georeference ke WGS84 menggunakan control points dari citra satelit.</div></li>
+      <li><span class="step-num">3</span><div><strong>Digitasi rekonstruksi 1600</strong> — Footprint kawasan didigitasi manual di QGIS berdasarkan georeferencing dan publikasi arkeologi. Output: GeoJSON.</div></li>
+      <li><span class="step-num">4</span><div><strong>Modelling 3D</strong> — Model bangunan dibangun prosedural dengan Three.js berdasarkan tipologi arsitektur Jawa (joglo, limasan, pendopo).</div></li>
+      <li><span class="step-num">5</span><div><strong>Integrasi WebGIS</strong> — Layer GeoJSON pada Leaflet.js, model 3D terhubung ke setiap titik lokasi via panel interaktif.</div></li>
+    </ol>
+
+    <h3>Keterbatasan Rekonstruksi</h3>
+    <p>Rekonstruksi era 1600 bersifat <strong>interpretatif</strong>. Tingkat akurasi per objek mencerminkan ketersediaan sumber data primer.</p>
+
+    <div class="accuracy-block">
+      <div class="ab-label">Estimasi akurasi rekonstruksi per objek</div>
+      <div class="ab-row"><span class="ab-name">Masjid Agung</span><div class="ab-bar"><div class="ab-fill" style="width:55%"></div></div><span class="ab-pct">55%</span></div>
+      <div class="ab-row"><span class="ab-name">Makam Raja-Raja</span><div class="ab-bar"><div class="ab-fill" style="width:60%"></div></div><span class="ab-pct">60%</span></div>
+      <div class="ab-row"><span class="ab-name">Benteng Cepuri</span><div class="ab-bar"><div class="ab-fill" style="width:42%"></div></div><span class="ab-pct">42%</span></div>
+      <div class="ab-row"><span class="ab-name">Permukiman</span><div class="ab-bar"><div class="ab-fill" style="width:35%"></div></div><span class="ab-pct">35%</span></div>
+      <div class="ab-row"><span class="ab-name">Pasar Kotagede</span><div class="ab-bar"><div class="ab-fill" style="width:38%"></div></div><span class="ab-pct">38%</span></div>
+    </div>
+
+    <h3>Sumber Data</h3>
+    <table class="ref-table">
+      <tr><th>Sumber</th><th>Digunakan untuk</th><th>Era</th></tr>
+      <tr><td>OpenStreetMap</td><td>Bangunan, jalan, sungai</td><td>2025</td></tr>
+      <tr><td>BPCB DIY</td><td>Batas &amp; status heritage</td><td>2025</td></tr>
+      <tr><td>KITLV Leiden</td><td>Peta historis georeferencing</td><td>1600</td></tr>
+      <tr><td>Balai Arkeologi Yogyakarta</td><td>Denah rekonstruksi</td><td>1600</td></tr>
+      <tr><td>Survey lapangan</td><td>Validasi koordinat</td><td>2025</td></tr>
+    </table>
+
+    <h3>Tools &amp; Stack</h3>
+    <div class="tag-row">
+      <span class="tag">QGIS 3.x</span>
+      <span class="tag">QuickOSM</span>
+      <span class="tag">Leaflet.js</span>
+      <span class="tag">Three.js r128</span>
+      <span class="tag">GeoJSON</span>
+      <span class="tag">WGS84</span>
+      <span class="tag">HTML / CSS / JS</span>
+    </div>
+  </div>
+</div>
+
+<!-- Drawer: Tentang -->
+<div class="drawer" id="drawerTentang">
+  <div class="drawer-head">
+    <h2>Tentang Proyek</h2>
+    <button class="drawer-close" data-close="drawerTentang">✕</button>
+  </div>
+  <div class="drawer-body">
+    <h3>Latar Belakang</h3>
+    <p>Kotagede adalah kawasan bersejarah di Yogyakarta yang pernah menjadi pusat Kerajaan Mataram Islam pada abad ke-16 hingga ke-17. Kawasan ini menyimpan lapisan sejarah yang kaya — dari Masjid Agung, kompleks makam raja, hingga sisa benteng Cepuri.</p>
+    <p>Proyek ini menghadirkan perbandingan visual kondisi spasial Kotagede pada masa Mataram (ca. 1600) dan masa kini (2025) melalui WebGIS yang menggabungkan peta interaktif dengan modelling 3D.</p>
+
+    <h3>Tujuan</h3>
+    <ol class="step-list">
+      <li><span class="step-num">✦</span><div>Memvisualisasikan perubahan lanskap spasial Kotagede dalam dua era temporal secara interaktif.</div></li>
+      <li><span class="step-num">✦</span><div>Mengintegrasikan data OSM dengan rekonstruksi interpretatif berbasis sumber arkeologi.</div></li>
+      <li><span class="step-num">✦</span><div>Menyediakan model 3D representatif bangunan heritage sebagai media interpretasi spasial.</div></li>
+    </ol>
+
+    <h3>Konteks Akademis</h3>
+    <p>Dikerjakan sebagai <strong>Final Project Mata Kuliah SIG Terapan</strong>. Fokus penilaian pada metodologi pengolahan data spasial, bukan keakuratan model arsitektur.</p>
+
+    <h3>Tim</h3>
+    <div class="profile-row">
+      <div class="profile-avatar">👤</div>
+      <div class="profile-info">
+        <div class="profile-name">Riwoo</div>
+        <div class="profile-role">Mahasiswa · SIG Terapan · 2025</div>
+      </div>
+    </div>
+
+    <h3>Referensi Utama</h3>
+    <table class="ref-table">
+      <tr><th>Penulis / Lembaga</th><th>Judul / Deskripsi</th></tr>
+      <tr><td>Balai Arkeologi Yogyakarta</td><td>Penelitian arkeologi kawasan Kotagede</td></tr>
+      <tr><td>BPCB DIY</td><td>Dokumentasi bangunan cagar budaya</td></tr>
+      <tr><td>KITLV Leiden</td><td>Koleksi peta &amp; foto kolonial</td></tr>
+      <tr><td>Prijotomo, J.</td><td>Tipologi arsitektur tradisional Jawa</td></tr>
+      <tr><td>Goodchild, M.F. (2008)</td><td>Historical GIS: Reconstructing the Past</td></tr>
+    </table>
+
+    <h3>Catatan</h3>
+    <p>Data simulasi/placeholder akan diganti dengan GeoJSON asli hasil pengolahan QGIS. Model 3D bersifat representatif berdasarkan tipologi bangunan, bukan rekonstruksi teknis per objek.</p>
+  </div>
+</div>
+
+<!-- Main Application Script -->
+<script type="module" src="assets/main.js"></script>
+</body>
+</html>
