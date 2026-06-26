@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arkeologi Vertikal — WebGIS 3D Kotagede</title>
   
-  <!-- External Libraries -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-  <!-- Modular CSS -->
   <link rel="stylesheet" href="assets/css/variables.css" />
   <link rel="stylesheet" href="assets/css/layout.css" />
   <link rel="stylesheet" href="assets/css/sidebar.css" />
@@ -22,7 +20,6 @@
 <body>
 <div class="shell">
 
-  <!-- Topbar -->
   <header class="topbar">
     <div class="brand">
       <div class="brand-icon">▣</div>
@@ -41,29 +38,10 @@
 
   <div class="body">
 
-    <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sb-search">
         <input type="text" id="searchInput" placeholder="Cari situs, kawasan, bangunan..." />
         <div id="searchResults" class="search-results"></div>
-      </div>
-
-      <div class="sb-head">Layer Control</div>
-
-      <div class="layer-group" id="group2025">
-        <div class="lg-title">OSM 2025</div>
-        <div class="layer-row">
-          <div class="lr-left"><div class="swatch" style="background:#8a2a1a"></div>Bangunan heritage</div>
-          <button class="tog" data-layer="heritage"></button>
-        </div>
-        <div class="layer-row">
-          <div class="lr-left"><div class="swatch" style="background:#8a5c0a"></div>Bangunan umum</div>
-          <button class="tog" data-layer="buildings"></button>
-        </div>
-        <div class="layer-row">
-          <div class="lr-left"><div class="swatch" style="background:#1a4a7a"></div>Sungai / jalan air</div>
-          <button class="tog" data-layer="rivers"></button>
-        </div>
       </div>
 
       <div class="layer-group" id="group1600">
@@ -86,7 +64,6 @@
       <div class="loc-list" id="locList"></div>
     </aside>
 
-    <!-- Map -->
     <div class="map-wrap">
       <div id="map"></div>
 
@@ -112,7 +89,6 @@
       </div>
     </div>
 
-    <!-- Right panel -->
     <aside class="right-panel" id="rightPanel">
       <div id="emptyState" class="empty-state">
         <span>🗺</span>
@@ -123,10 +99,8 @@
   </div>
 </div>
 
-<!-- Drawer overlay -->
 <div class="drawer-overlay" id="drawerOverlay"></div>
 
-<!-- Drawer: Metodologi -->
 <div class="drawer" id="drawerMetodologi">
   <div class="drawer-head">
     <h2>Metodologi</h2>
@@ -180,7 +154,6 @@
   </div>
 </div>
 
-<!-- Drawer: Tentang -->
 <div class="drawer" id="drawerTentang">
   <div class="drawer-head">
     <h2>Tentang Proyek</h2>
@@ -225,7 +198,6 @@
   </div>
 </div>
 
-<!-- Main Application Script -->
 <script type="module" src="assets/main.js"></script>
 </body>
 </html>
