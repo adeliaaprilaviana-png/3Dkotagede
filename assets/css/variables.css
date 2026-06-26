@@ -28,6 +28,17 @@
   --blue:      #1a4a7a;
 
   /* ── Typography ── */
-  --serif:     Georgia, "Times New Roman", serif;
-  --sans:      ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans:  ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* ── Topbar height ── */
+  --topbar-height: 48px;
+}
+
+html, body {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
