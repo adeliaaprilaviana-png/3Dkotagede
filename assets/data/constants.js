@@ -35,18 +35,29 @@ export const PIN_GREEN = "#2d5a0e";
 export const PIN_RED   = "#8a2a1a";
 
 // ── Basemap tile URLs ─────────────────────────────────────────
+
+/** Modern era — OpenStreetMap standard */
 export const TILE_OSM =
   "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 
+/**
+ * Historic era — CartoDB Voyager No Labels
+ * Tampilan bersih, warna netral/sepia, gratis tanpa API key.
+ * Alternatif terbaik pengganti Stamen Watercolor untuk GitHub Pages.
+ */
 export const TILE_STAMEN_WATERCOLOR =
-  "https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg";
+  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png";
 
+/**
+ * Historic era label overlay — CartoDB Voyager Labels Only
+ * Menambahkan label jalan/nama tempat di atas basemap sepia.
+ */
 export const TILE_STAMEN_TONER_LITE =
-  "https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}.png";
+  "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_only_labels/{z}/{x}/{y}{r}.png";
 
 // ── Basemap attributions ──────────────────────────────────────
 export const ATTR_OSM =
-  "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>";
+  "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors";
 
 export const ATTR_STAMEN =
-  "© <a href='https://stamen.com'>Stamen Design</a> / <a href='https://stadiamaps.com'>Stadia Maps</a>";
+  "© <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors © <a href='https://carto.com/attributions'>CARTO</a>";
