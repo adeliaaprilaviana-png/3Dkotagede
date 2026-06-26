@@ -10,7 +10,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-  <!-- Modular CSS -->
+  <!-- Modular CSS Bawaan -->
   <link rel="stylesheet" href="assets/css/variables.css" />
   <link rel="stylesheet" href="assets/css/layout.css" />
   <link rel="stylesheet" href="assets/css/sidebar.css" />
@@ -18,8 +18,92 @@
   <link rel="stylesheet" href="assets/css/panel.css" />
   <link rel="stylesheet" href="assets/css/drawer.css" />
   <link rel="stylesheet" href="assets/css/responsive.css" />
+
+  <!-- CSS Tambahan untuk Menggabungkan Artikel & WebGIS -->
+  <style>
+    /* Mengizinkan seluruh halaman web untuk di-scroll */
+    html, body {
+      overflow-y: auto !important;
+      height: auto !important;
+      margin: 0;
+      padding: 0;
+      background-color: #fdfbf7;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Styling Artikel / Landing Page Atas */
+    .landing-header {
+      background-color: #5a2a0a;
+      color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .landing-header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    .landing-header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-top: 10px;
+    }
+    .landing-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      line-height: 1.8;
+      color: #333;
+      text-align: justify;
+    }
+    .landing-content h2 {
+      color: #5a2a0a;
+      border-bottom: 2px solid #6b5a3a;
+      padding-bottom: 8px;
+    }
+    .scroll-hint {
+      text-align: center;
+      font-style: italic;
+      color: #6b5a3a;
+      margin-top: 30px;
+    }
+
+    /* Memaksa elemen Shell WebGIS agar tidak mengunci full-screen layar utama */
+    .shell {
+      position: relative !important;
+      height: 750px !important; /* Tinggi kotak aplikasi WebGIS kamu */
+      width: 100% !important;
+      border-top: 4px solid #5a2a0a;
+      box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
+
+<!-- ================= BAGIAN 1: ARTIKEL UTAMA (ATAS) ================= -->
+<header class="landing-header">
+  <h1>JEJAK SPASIAL KOTAGEDE</h1>
+  <p>Menelusuri Lapisan Sejarah Ibu Kota Mataram Islam Melalui Arkeologi Vertikal</p>
+</header>
+
+<section class="landing-content">
+  <h2>Pusat Kerajaan yang Terlupakan</h2>
+  <p>
+    Kotagede merupakan saksi bisu berdirinya dinasti Kerajaan Mataram Islam pada abad ke-16. 
+    Dari sebuah alas (hutan) Mentaok, kawasan ini berkembang pesat menjadi pusat pemerintahan, 
+    ekonomi, dan keagamaan yang megah di bawah kepemimpinan Panembahan Senopati.
+  </p>
+  <p>
+    Melalui pendekatan <em>Historical GIS</em>, proyek ini merekonstruksi kembali tata ruang 
+    Kotagede pada kisaran tahun 1600-an dan membandingkannya secara vertikal dengan lanskap modern saat ini.
+  </p>
+  <p class="scroll-hint">
+    ⬇ Gulir ke bawah untuk mulai mengeksplorasi peta interaktif dan model rekonstruksi 3D ⬇
+  </p>
+</section>
+
+
+<!-- ================= BAGIAN 2: WEBGIS 3D KOTAGEDE (BAWAH) ================= -->
 <div class="shell">
 
   <!-- Topbar -->
@@ -206,6 +290,10 @@
     <p>Data simulasi/placeholder akan diganti dengan GeoJSON asli hasil pengolahan QGIS. Model 3D bersifat representatif berdasarkan tipologi bangunan, bukan rekonstruksi teknis per objek.</p>
   </div>
 </div>
+
+<footer style="background-color: #222; color: #aaa; text-align: center; padding: 15px; font-size: 0.9rem; margin-top: 0;">
+  <p>&copy; 2026 Proyek Arkeologi Vertikal — SIG Terapan Kotagede</p>
+</footer>
 
 <!-- Main Application Script -->
 <script type="module" src="assets/main.js"></script>
