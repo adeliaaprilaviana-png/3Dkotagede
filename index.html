@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Jejak Spasial Kotagede</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --coklat:#4a2008;
+  --coklat2:#6b3410;
+  --aksen:#b8733a;
+  --aksen-muda:#d4956a;
+  --hijau:#243d10;
+  --hijau2:#3a5c18;
+  --bg:#f9f6f0;
+  --bg2:#f1ebe0;
+  --putih:#ffffff;
+  --teks:#1c1209;
+  --teks2:#4a3f30;
+  --abu:#7a6e5f;
+  --garis:#e0d9cc;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+}
+
+html,body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--teks);
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+  line-height:1.6;
+}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:9999;
+  background:rgba(74,32,8,0.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  transition:background .3s;
+}
+.nav-inner{
+  max-width:1100px;margin:0 auto;padding:0 28px;
+  display:flex;align-items:center;justify-content:space-between;height:54px;
+}
+.nav-logo{
+  color:#fff;font-family:var(--serif);font-size:14px;
+  letter-spacing:0.5px;text-decoration:none;display:flex;align-items:center;gap:10px;
+}
+.nav-logo-mark{
+  width:28px;height:28px;border:1.5px solid rgba(201,137,90,0.6);
+  display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--aksen-muda);
+}
+.nav-links{display:flex;gap:2px}
+.nav-links a{
+  color:rgba(255,255,255,0.65);font-size:12px;padding:6px 13px;
+  border-radius:4px;text-decoration:none;transition:.15s;letter-spacing:0.2px;
+}
+.nav-links a:hover,.nav-links a.active{
+  background:rgba(255,255,255,0.1);color:#fff;
+}
+.nav-cta{
+  background:var(--aksen);color:#fff;border:none;
+  padding:7px 18px;border-radius:4px;font-size:12px;font-weight:500;
+  cursor:pointer;text-decoration:none;transition:.2s;letter-spacing:0.3px;
+}
+.nav-cta:hover{background:var(--aksen2, #a0622a)}
+
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(155deg,#2a0e03 0%,#4a2008 35%,#6b3410 65%,#1e0c02 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;padding-top:54px;
+}
+
+/* Tekstur halus di background */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 70% 30%, rgba(184,115,58,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 20% 70%, rgba(36,61,16,0.15) 0%, transparent 50%);
+}
+
+/* Garis grid dekoratif */
+.hero-grid{
+  position:absolute;inset:0;opacity:0.04;
+  background-image:
+    linear-gradient(rgba(255,255,255,1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,1) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+
+/* Ornamen lingkaran besar */
+.hero-orb{
+  position:absolute;
+  border-radius:50%;
+}
+.hero-orb-1{
+  width:500px;height:500px;
+  border:1px solid rgba(184,115,58,0.15);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.hero-orb-2{
+  width:700px;height:700px;
+  border:1px solid rgba(184,115,58,0.07);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+
+.hero-content{
+  position:relative;z-index:2;text-align:center;
+  padding:40px 28px;max-width:800px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--aksen-muda);font-weight:600;margin-bottom:28px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{
+  content:'';width:24px;height:1px;background:var(--aksen-muda);opacity:0.6;
+}
+.hero-judul{
+  font-family:var(--serif);
+  font-size:clamp(2.8rem,7vw,4.8rem);
+  color:#fff;line-height:1.15;
+  margin-bottom:6px;
+  letter-spacing:-0.5px;
+}
+.hero-judul em{
+  font-style:italic;color:var(--aksen-muda);
+}
+.hero-sub-judul{
+  font-family:var(--serif);
+  font-size:clamp(1rem,2.5vw,1.3rem);
+  color:rgba(255,255,255,0.45);
+  font-weight:400;font-style:italic;
+  margin-bottom:24px;
+  letter-spacing:0.3px;
+}
+.hero-desc{
+  font-size:14px;color:rgba(255,255,255,0.65);
+  line-height:1.8;max-width:500px;margin:0 auto 40px;
+}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:56px}
+.btn-primer{
+  background:var(--aksen);color:#fff;border:none;
+  padding:13px 30px;border-radius:3px;font-size:13px;font-weight:500;
+  cursor:pointer;text-decoration:none;transition:.2s;letter-spacing:0.5px;
+}
+.btn-primer:hover{background:#a0622a;transform:translateY(-1px)}
+.btn-sekunder{
+  background:transparent;color:rgba(255,255,255,0.8);
+  border:1px solid rgba(255,255,255,0.25);
+  padding:13px 30px;border-radius:3px;font-size:13px;
+  cursor:pointer;text-decoration:none;transition:.2s;letter-spacing:0.5px;
+}
+.btn-sekunder:hover{border-color:rgba(255,255,255,0.5);color:#fff}
+
+.hero-angka{
+  display:flex;gap:0;border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:40px;justify-content:center;flex-wrap:wrap;
+}
+.angka-item{
+  padding:0 36px;text-align:center;
+  border-right:1px solid rgba(255,255,255,0.1);
+}
+.angka-item:last-child{border-right:none}
+.angka-n{
+  font-family:var(--serif);font-size:2rem;
+  color:var(--aksen-muda);font-weight:400;display:block;
+}
+.angka-l{
+  font-size:10px;color:rgba(255,255,255,0.4);
+  letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;display:block;
+}
+
+.hero-scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  color:rgba(255,255,255,0.3);font-size:10px;text-align:center;
+  letter-spacing:2px;text-transform:uppercase;
+  animation:naik 2s ease-in-out infinite;
+}
+.hero-scroll::after{
+  content:'';display:block;width:1px;height:32px;
+  background:rgba(255,255,255,0.2);margin:8px auto 0;
+}
+@keyframes naik{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(5px)}}
+
+/* ─── SECTION UMUM ─── */
+section{padding:90px 28px}
+.container{max-width:1040px;margin:0 auto}
+.sec-eyebrow{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--aksen);font-weight:600;margin-bottom:14px;display:block;
+}
+.sec-judul{
+  font-family:var(--serif);
+  font-size:clamp(1.7rem,4vw,2.5rem);
+  color:var(--coklat);line-height:1.25;margin-bottom:16px;
+}
+.sec-garis{
+  width:40px;height:2px;background:var(--aksen);margin-bottom:32px;
+}
+
+/* ─── INTRO ─── */
+#intro{background:var(--bg)}
+.intro-lead{
+  max-width:660px;font-size:15px;color:var(--teks2);
+  line-height:1.85;margin-bottom:56px;
+}
+.intro-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--garis);border:1px solid var(--garis);
+}
+@media(max-width:680px){.intro-grid{grid-template-columns:1fr}}
+.icard{
+  background:var(--putih);padding:32px;
+  transition:background .2s;
+}
+.icard:hover{background:#fdf8f3}
+.icard-num{
+  font-family:var(--serif);font-size:11px;color:var(--aksen);
+  letter-spacing:2px;margin-bottom:20px;display:block;
+  padding-bottom:16px;border-bottom:1px solid var(--garis);
+}
+.icard h3{
+  font-family:var(--serif);font-size:17px;
+  color:var(--coklat);margin-bottom:10px;font-weight:600;
+}
+.icard p{font-size:13px;color:var(--abu);line-height:1.75}
+
+/* ─── SEJARAH ─── */
+#sejarah{background:var(--bg2)}
+.sejarah-layout{
+  display:grid;grid-template-columns:1fr 1.1fr;gap:64px;
+  align-items:start;margin-top:52px;
+}
+@media(max-width:720px){.sejarah-layout{grid-template-columns:1fr;gap:40px}}
+
+.timeline{position:relative;padding-left:28px}
+.timeline::before{
+  content:'';position:absolute;left:0;top:6px;bottom:0;
+  width:1px;background:var(--garis);
+}
+.tl-item{position:relative;margin-bottom:40px}
+.tl-item:last-child{margin-bottom:0}
+.tl-dot{
+  position:absolute;left:-34px;top:4px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--coklat);border:2px solid var(--bg2);
+  box-shadow:0 0 0 3px var(--garis);
+}
+.tl-tahun{
+  font-size:10px;font-weight:600;color:var(--aksen);
+  letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;display:block;
+}
+.tl-judul{
+  font-family:var(--serif);font-size:16px;
+  color:var(--teks);margin-bottom:8px;
+}
+.tl-desk{font-size:13px;color:var(--abu);line-height:1.7}
+
+.sinfo-wrap{display:flex;flex-direction:column;gap:16px}
+.sinfo-card{
+  background:var(--putih);border:1px solid var(--garis);border-radius:2px;overflow:hidden;
+}
+.sinfo-head{
+  background:var(--coklat);color:#fff;padding:15px 20px;
+}
+.sinfo-head h3{font-family:var(--serif);font-size:14px;font-weight:400;letter-spacing:0.3px}
+.sinfo-body{padding:4px 0}
+.sinfo-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:10px 20px;border-bottom:1px solid var(--garis);font-size:12px;
+}
+.sinfo-row:last-child{border-bottom:none}
+.sinfo-row .sk{color:var(--abu)}
+.sinfo-row .sv{color:var(--teks);font-weight:500;text-align:right}
+
+.konsep-card{
+  background:var(--coklat);color:#fff;border-radius:2px;padding:24px 20px;
+}
+.konsep-card h3{
+  font-family:var(--serif);font-size:14px;font-weight:400;
+  margin-bottom:18px;opacity:0.85;letter-spacing:0.3px;
+}
+.konsep-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kk{
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);
+  border-radius:2px;padding:14px 12px;text-align:center;
+  transition:background .2s;
+}
+.kk:hover{background:rgba(255,255,255,0.14)}
+.kk-nama{font-size:12px;opacity:0.75;letter-spacing:0.5px}
+
+/* ─── ARSITEKTUR ─── */
+#arsitektur{background:var(--bg)}
+.arsi-lead{
+  max-width:620px;font-size:14px;color:var(--teks2);
+  line-height:1.8;margin-bottom:52px;
+}
+.arsi-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.arsi-card{
+  background:var(--putih);border:1px solid var(--garis);overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+.arsi-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(74,32,8,0.1)}
+.arsi-illus{
+  height:140px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.arsi-card-body{padding:20px}
+.arsi-card h4{
+  font-family:var(--serif);font-size:15px;
+  color:var(--teks);margin-bottom:8px;
+}
+.arsi-card p{font-size:12px;color:var(--abu);line-height:1.65}
+
+/* ─── WEBGIS ─── */
+#webgis{background:var(--bg2);padding:0}
+.webgis-header{
+  background:var(--coklat);color:#fff;
+  padding:60px 28px 48px;
+}
+.webgis-header-inner{
+  max-width:1040px;margin:0 auto;
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:40px;flex-wrap:wrap;
+}
+.webgis-desc{
+  font-size:13px;color:rgba(255,255,255,0.6);
+  line-height:1.75;max-width:400px;margin-top:10px;
+}
+.webgis-tag{
+  font-size:10px;color:rgba(255,255,255,0.35);
+  margin-top:14px;letter-spacing:1px;text-transform:uppercase;
+}
+
+.webgis-instruksi{
+  display:flex;flex-direction:column;gap:10px;min-width:220px;
+}
+.webgis-instruksi-label{
+  font-size:10px;color:rgba(255,255,255,0.4);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;
+}
+.instruksi-item{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5;
+}
+.instruksi-num{
+  width:20px;height:20px;border:1px solid rgba(255,255,255,0.2);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:var(--aksen-muda);flex-shrink:0;margin-top:1px;
+}
+
+/* iframe embed */
+.webgis-embed-wrap{
+  width:100%;height:720px;
+  border-top:3px solid var(--aksen);
+  position:relative;background:#1a0c04;
+}
+.webgis-embed-wrap iframe{
+  width:100%;height:100%;border:none;display:block;
+}
+.embed-loading{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:rgba(255,255,255,0.3);font-size:13px;letter-spacing:1px;
+  pointer-events:none;z-index:1;
+}
+
+.webgis-info{
+  background:var(--putih);border-top:1px solid var(--garis);padding:36px 28px;
+}
+.winfo-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1px;background:var(--garis);border:1px solid var(--garis);
+  max-width:1040px;margin:0 auto;
+}
+.winfo-card{background:var(--putih);padding:20px 22px}
+.winfo-card h4{
+  font-size:10px;font-weight:700;color:var(--coklat);
+  margin-bottom:8px;letter-spacing:1.5px;text-transform:uppercase;
+}
+.winfo-card p{font-size:12px;color:var(--abu);line-height:1.6}
+
+/* ─── TENTANG ─── */
+#tentang{background:var(--bg2)}
+.tentang-layout{
+  display:grid;grid-template-columns:1.15fr 1fr;
+  gap:64px;align-items:start;margin-top:52px;
+}
+@media(max-width:720px){.tentang-layout{grid-template-columns:1fr;gap:36px}}
+.tentang-teks p{
+  font-size:13px;color:var(--teks2);line-height:1.85;margin-bottom:18px;
+}
+.tentang-teks h3{
+  font-family:var(--serif);font-size:16px;color:var(--coklat);
+  margin:28px 0 14px;
+}
+.fitur-list{list-style:none}
+.fitur-list li{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:12px 0;border-bottom:1px solid var(--garis);
+  font-size:13px;color:var(--teks2);
+}
+.fitur-list li:last-child{border-bottom:none}
+.fi-kode{
+  font-size:9px;font-weight:700;letter-spacing:1px;
+  color:var(--aksen);background:#f4e8d8;
+  padding:3px 7px;border-radius:2px;flex-shrink:0;margin-top:2px;
+}
+
+.tech-card{
+  background:var(--putih);border:1px solid var(--garis);padding:0;
+}
+.tech-card-head{
+  background:var(--bg2);padding:16px 20px;
+  border-bottom:1px solid var(--garis);
+}
+.tech-card-head h3{
+  font-family:var(--serif);font-size:15px;color:var(--coklat);font-weight:400;
+}
+.tech-item{
+  display:flex;align-items:center;gap:14px;
+  padding:13px 20px;border-bottom:1px solid var(--garis);font-size:12px;
+}
+.tech-item:last-child{border-bottom:none}
+.tech-badge{
+  padding:3px 8px;border-radius:2px;font-size:9px;font-weight:700;
+  letter-spacing:1px;background:#eaf2e0;color:var(--hijau2);flex-shrink:0;
+}
+.tech-name{color:var(--teks);font-weight:500;flex:1}
+.tech-desc{color:var(--abu);font-size:11px}
+
+.metode-card{
+  background:var(--putih);border:1px solid var(--garis);
+  padding:20px;margin-top:14px;
+}
+.metode-card-label{
+  font-size:10px;color:var(--abu);margin-bottom:14px;
+  font-weight:700;letter-spacing:1px;text-transform:uppercase;
+}
+.metode-item{
+  display:flex;gap:12px;align-items:flex-start;
+  font-size:12px;color:var(--teks2);padding:7px 0;
+  border-bottom:1px solid var(--garis);
+}
+.metode-item:last-child{border-bottom:none}
+.metode-item::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:var(--aksen);flex-shrink:0;margin-top:5px;
+}
+
+/* ─── TIM ─── */
+#tim{background:var(--bg)}
+.tim-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));
+  gap:14px;margin-top:52px;
+}
+.tim-card{
+  background:var(--putih);border:1px solid var(--garis);
+  padding:28px 20px;text-align:center;
+  transition:border-color .2s,transform .2s;
+}
+.tim-card:hover{border-color:var(--aksen);transform:translateY(-2px)}
+.tim-avatar{
+  width:56px;height:56px;border-radius:50%;
+  margin:0 auto 16px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:18px;color:#fff;font-weight:600;
+}
+.tim-card h3{
+  font-family:var(--serif);font-size:14px;color:var(--teks);
+  margin-bottom:4px;font-weight:600;
+}
+.tim-peran{font-size:11px;color:var(--abu);margin-bottom:12px;line-height:1.5}
+.tim-badge{
+  display:inline-block;padding:3px 10px;border-radius:2px;
+  font-size:10px;font-weight:600;letter-spacing:0.5px;
+}
+.badge-ketua{background:#f4e8d8;color:var(--coklat)}
+.badge-anggota{background:#eaf2e0;color:var(--hijau2)}
+
+.afiliasi{
+  margin-top:36px;background:var(--bg2);
+  border:1px solid var(--garis);padding:24px 28px;
+  display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;
+}
+.afiliasi-ikon{
+  width:44px;height:44px;border:1px solid var(--garis);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;background:var(--putih);
+}
+.afiliasi-teks h4{font-size:13px;font-weight:600;color:var(--coklat);margin-bottom:5px}
+.afiliasi-teks p{font-size:12px;color:var(--abu);line-height:1.65}
+
+/* ─── FOOTER ─── */
+footer{
+  background:#120804;color:rgba(255,255,255,0.35);
+  text-align:center;padding:44px 28px;font-size:11px;line-height:1.8;
+}
+.footer-logo{
+  font-family:var(--serif);font-size:17px;
+  color:rgba(201,137,90,0.7);margin-bottom:10px;letter-spacing:1px;
+}
+footer .footer-garis{
+  width:40px;height:1px;background:rgba(255,255,255,0.1);
+  margin:16px auto;
+}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:600px){
+  .nav-links{display:none}
+  .angka-item{padding:0 18px}
+  .webgis-embed-wrap{height:500px}
+  section{padding:64px 20px}
+}
+
+/* ─── SCROLL REVEAL ─── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">
+      <div class="nav-logo-mark">▣</div>
+      Jejak Spasial Kotagede
+    </a>
+    <div class="nav-links">
+      <a href="#intro">Pendahuluan</a>
+      <a href="#sejarah">Sejarah</a>
+      <a href="#arsitektur">Arsitektur</a>
+      <a href="#webgis">WebGIS</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#tim">Tim</a>
+    </div>
+    <a class="nav-cta" href="#webgis">Buka Peta</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">SIG Terapan &nbsp;&middot;&nbsp; UPN Veteran Yogyakarta &nbsp;&middot;&nbsp; 2025–2026</div>
+    <h1 class="hero-judul">Jejak Spasial<br><em>Kotagede</em></h1>
+    <p class="hero-sub-judul">Arkeologi Vertikal Ibu Kota Mataram Islam</p>
+    <p class="hero-desc">Rekonstruksi tata ruang Kotagede dari abad ke-16 hingga kini melalui pemetaan spasial interaktif, model 3D arsitektur tradisional Jawa, dan analisis Historical GIS.</p>
+    <div class="hero-btns">
+      <a class="btn-primer" href="#webgis">Jelajahi Peta</a>
+      <a class="btn-sekunder" href="#sejarah">Telusuri Sejarah</a>
+    </div>
+    <div class="hero-angka">
+      <div class="angka-item">
+        <span class="angka-n">1600</span>
+        <span class="angka-l">Tahun berdiri</span>
+      </div>
+      <div class="angka-item">
+        <span class="angka-n">400+</span>
+        <span class="angka-l">Tahun sejarah</span>
+      </div>
+      <div class="angka-item">
+        <span class="angka-n">12</span>
+        <span class="angka-l">Situs dipetakan</span>
+      </div>
+      <div class="angka-item">
+        <span class="angka-n">2</span>
+        <span class="angka-l">Era dibandingkan</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">Gulir</div>
+</section>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="container reveal">
+    <span class="sec-eyebrow">Pendahuluan</span>
+    <h2 class="sec-judul">Apa itu Jejak Spasial Kotagede?</h2>
+    <div class="sec-garis"></div>
+    <p class="intro-lead">Proyek ini merupakan luaran Tim 1 mata kuliah SIG Terapan yang memvisualisasikan perbandingan tata ruang Kotagede pada era Mataram Islam (sekitar 1600) dengan kondisinya saat ini menggunakan platform WebGIS berbasis web — menggabungkan arkeologi, kartografi historis, dan pemodelan tiga dimensi dalam satu antarmuka terpadu.</p>
+    <div class="intro-grid">
+      <div class="icard">
+        <span class="icard-num">01 &mdash; Arkeologi Spasial</span>
+        <h3>Rekonstruksi Tata Ruang Kerajaan</h3>
+        <p>Tata letak keraton, alun-alun, masjid, dan benteng Mataram Islam direkonstruksi berdasarkan tinggalan arkeologis, peta historis, dan literatur ilmiah yang tersedia.</p>
+      </div>
+      <div class="icard">
+        <span class="icard-num">02 &mdash; Perbandingan Lintas Zaman</span>
+        <h3>Dua Era dalam Satu Platform</h3>
+        <p>Pengguna dapat beralih antara lapisan Mataram 1600 dan Kotagede 2025 secara langsung di peta, dengan basemap OpenStreetMap sebagai referensi orientasi.</p>
+      </div>
+      <div class="icard">
+        <span class="icard-num">03 &mdash; Model 3D</span>
+        <h3>Arsitektur Tradisional Jawa</h3>
+        <p>Representasi tiga dimensi bangunan bersejarah seperti Joglo dan Kampung dirender secara real-time menggunakan Three.js, langsung di dalam browser.</p>
+      </div>
+      <div class="icard">
+        <span class="icard-num">04 &mdash; Historical GIS</span>
+        <h3>Metodologi HGIS</h3>
+        <p>Pendekatan Historical GIS menggabungkan georeferensi, analisis spasial, dan sumber data historis untuk merekonstruksi lansekap budaya yang telah berubah selama berabad-abad.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEJARAH -->
+<section id="sejarah">
+  <div class="container reveal">
+    <span class="sec-eyebrow">Latar Belakang Sejarah</span>
+    <h2 class="sec-judul">Kotagede dan Mataram Islam</h2>
+    <div class="sec-garis"></div>
+    <div class="sejarah-layout">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <span class="tl-tahun">Akhir abad ke-16</span>
+          <div class="tl-judul">Berdirinya Kota Raja</div>
+          <p class="tl-desk">Panembahan Senapati mendirikan Kotagede sebagai ibu kota pertama Kerajaan Mataram Islam. Tata ruang kota dibangun berdasarkan konsep Catur Gatra Tunggal — keterpaduan keraton, alun-alun, masjid, dan pasar.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <span class="tl-tahun">Abad ke-17</span>
+          <div class="tl-judul">Puncak Kejayaan Mataram</div>
+          <p class="tl-desk">Di bawah Sultan Agung, Mataram berkembang menjadi kerajaan paling berpengaruh di Jawa. Kompleks masjid, makam, dan benteng dibangun dalam skala besar dengan teknik konstruksi kayu jati.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <span class="tl-tahun">Abad ke-18</span>
+          <div class="tl-judul">Perpindahan Ibu Kota</div>
+          <p class="tl-desk">Pusat pemerintahan berpindah ke Kartasura lalu Surakarta. Kotagede bertransisi menjadi kawasan permukiman padat dan sentra kerajinan perak yang dikenal hingga kini.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <span class="tl-tahun">Abad ke-20 hingga kini</span>
+          <div class="tl-judul">Kawasan Cagar Budaya</div>
+          <p class="tl-desk">Kotagede ditetapkan sebagai kawasan cagar budaya. Pola permukiman, nama-nama kampung lama, dan sebagian struktur kota bersejarah masih dapat dikenali dan diamati secara langsung.</p>
+        </div>
+      </div>
+      <div class="sinfo-wrap">
+        <div class="sinfo-card">
+          <div class="sinfo-head"><h3>Profil Kawasan Kotagede</h3></div>
+          <div class="sinfo-body">
+            <div class="sinfo-row"><span class="sk">Pendiri</span><span class="sv">Panembahan Senapati</span></div>
+            <div class="sinfo-row"><span class="sk">Periode aktif</span><span class="sv">Akhir abad ke-16 – awal ke-17</span></div>
+            <div class="sinfo-row"><span class="sk">Lokasi</span><span class="sv">Kota Yogyakarta & Kab. Bantul</span></div>
+            <div class="sinfo-row"><span class="sk">Status saat ini</span><span class="sv">Kawasan Cagar Budaya</span></div>
+            <div class="sinfo-row"><span class="sk">Kerajaan</span><span class="sv">Mataram Islam</span></div>
+            <div class="sinfo-row"><span class="sk">Kerajinan khas</span><span class="sv">Perak (Silver Craft)</span></div>
+          </div>
+        </div>
+        <div class="konsep-card">
+          <h3>Konsep Tata Ruang: Catur Gatra Tunggal</h3>
+          <div class="konsep-grid">
+            <div class="kk"><div class="kk-nama">Keraton</div></div>
+            <div class="kk"><div class="kk-nama">Masjid</div></div>
+            <div class="kk"><div class="kk-nama">Alun-alun</div></div>
+            <div class="kk"><div class="kk-nama">Pasar</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARSITEKTUR -->
+<section id="arsitektur">
+  <div class="container reveal">
+    <span class="sec-eyebrow">Tipologi Arsitektur</span>
+    <h2 class="sec-judul">Bangunan Tradisional Jawa Abad ke-16</h2>
+    <div class="sec-garis"></div>
+    <p class="arsi-lead">Bangunan di Kotagede memperlihatkan perpaduan arsitektur Jawa klasik dengan pengaruh Islam — struktur kayu jati dengan empat saka guru, sistem sambungan tanpa paku, serta bentuk atap yang mencerminkan hierarki sosial pemiliknya.</p>
+    <div class="arsi-cards">
+      <div class="arsi-card">
+        <div class="arsi-illus" style="background:#f7efe3">
+          <svg width="130" height="110" viewBox="0 0 130 110">
+            <polygon points="65,8 8,56 122,56" fill="#5a2a0a" opacity=".9"/>
+            <polygon points="65,22 24,56 106,56" fill="#7a3d12" opacity=".65"/>
+            <rect x="28" y="56" width="74" height="40" fill="#c9895a"/>
+            <rect x="50" y="72" width="30" height="24" fill="#4a2008"/>
+            <rect x="33" y="62" width="14" height="18" fill="#ead4b0"/>
+            <rect x="83" y="62" width="14" height="18" fill="#ead4b0"/>
+            <line x1="28" y1="56" x2="102" y2="56" stroke="#3a1a05" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="arsi-card-body">
+          <h4>Joglo</h4>
+          <p>Atap piramidal bertingkat dengan puncak menjulang — penanda status bangsawan. Ditopang empat saka guru dari kayu jati pilihan dengan sambungan tradisional tanpa paku.</p>
+        </div>
+      </div>
+      <div class="arsi-card">
+        <div class="arsi-illus" style="background:#eaf0e2">
+          <svg width="130" height="110" viewBox="0 0 130 110">
+            <polygon points="65,10 10,54 120,54" fill="#2d5a0e" opacity=".85"/>
+            <rect x="20" y="54" width="90" height="42" fill="#4a8020"/>
+            <rect x="44" y="66" width="42" height="30" fill="#2d5a0e"/>
+            <rect x="24" y="59" width="16" height="20" fill="#dcefd0"/>
+            <rect x="90" y="59" width="16" height="20" fill="#dcefd0"/>
+            <line x1="20" y1="54" x2="110" y2="54" stroke="#1e3d0a" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="arsi-card-body">
+          <h4>Kampung</h4>
+          <p>Atap pelana dua sisi yang lebih sederhana, umum pada rumah warga biasa dan bangunan penunjang kompleks keraton. Mudah dibangun dan dirawat menggunakan material lokal.</p>
+        </div>
+      </div>
+      <div class="arsi-card">
+        <div class="arsi-illus" style="background:#f5f0e8">
+          <svg width="130" height="110" viewBox="0 0 130 110">
+            <rect x="8" y="12" width="114" height="78" fill="none" stroke="#5a2a0a" stroke-width="2" rx="1"/>
+            <rect x="18" y="22" width="94" height="58" fill="none" stroke="#8a5020" stroke-width="1" rx="1"/>
+            <line x1="65" y1="12" x2="65" y2="90" stroke="#c9895a" stroke-width="1" stroke-dasharray="4,4"/>
+            <line x1="8" y1="51" x2="122" y2="51" stroke="#c9895a" stroke-width="1" stroke-dasharray="4,4"/>
+            <rect x="50" y="65" width="30" height="25" fill="#e8c99a"/>
+            <rect x="22" y="27" width="18" height="24" fill="#e8f0e0" stroke="#8a5020" stroke-width="1"/>
+            <rect x="90" y="27" width="18" height="24" fill="#e8f0e0" stroke="#8a5020" stroke-width="1"/>
+            <text x="65" y="48" text-anchor="middle" font-size="7" fill="#8a5020">Dalem</text>
+            <text x="30" y="36" text-anchor="middle" font-size="7" fill="#8a5020">Senthong</text>
+            <text x="30" y="75" text-anchor="middle" font-size="7" fill="#8a5020">Gandok</text>
+          </svg>
+        </div>
+        <div class="arsi-card-body">
+          <h4>Tata Ruang Dalam</h4>
+          <p>Pembagian ruang dari depan ke belakang: pendopo, pringgitan, dalem, senthong, gandhok, pawon. Setiap zona memiliki fungsi yang berbeda sekaligus makna filosofis dan hierarki tersendiri.</p>
+        </div>
+      </div>
+      <div class="arsi-card">
+        <div class="arsi-illus" style="background:#fdf5e8">
+          <svg width="130" height="110" viewBox="0 0 130 110">
+            <rect x="10" y="18" width="110" height="72" fill="none" stroke="#5a2a0a" stroke-width="2"/>
+            <rect x="10" y="18" width="8" height="72" fill="#5a2a0a"/>
+            <rect x="112" y="18" width="8" height="72" fill="#5a2a0a"/>
+            <rect x="18" y="26" width="94" height="64" fill="#fdf6ec"/>
+            <!-- Panel gebyok -->
+            <rect x="22" y="30" width="22" height="32" fill="none" stroke="#7a3d12" stroke-width="1.5"/>
+            <line x1="22" y1="46" x2="44" y2="46" stroke="#7a3d12" stroke-width=".7"/>
+            <line x1="33" y1="30" x2="33" y2="62" stroke="#7a3d12" stroke-width=".7"/>
+            <rect x="56" y="30" width="22" height="32" fill="none" stroke="#7a3d12" stroke-width="1.5"/>
+            <line x1="56" y1="46" x2="78" y2="46" stroke="#7a3d12" stroke-width=".7"/>
+            <line x1="67" y1="30" x2="67" y2="62" stroke="#7a3d12" stroke-width=".7"/>
+            <rect x="90" y="30" width="22" height="32" fill="none" stroke="#7a3d12" stroke-width="1.5"/>
+            <rect x="46" y="68" width="38" height="22" fill="#e8c8a0"/>
+          </svg>
+        </div>
+        <div class="arsi-card-body">
+          <h4>Gebyok & Dinding Kayu</h4>
+          <p>Panel kayu jati berukir yang berfungsi sebagai partisi dekoratif sekaligus pengatur sirkulasi udara. Motif ukiran mencerminkan identitas keluarga dan tingkat kemakmuran pemilik rumah.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEBGIS -->
+<section id="webgis">
+  <div class="webgis-header">
+    <div class="webgis-header-inner">
+      <div>
+        <span class="sec-eyebrow" style="color:var(--aksen-muda)">Eksplorasi Interaktif</span>
+        <h2 class="sec-judul" style="color:#fff">WebGIS 3D Kotagede</h2>
+        <p class="webgis-desc">Jelajahi persebaran situs-situs bersejarah, alihkan tampilan antara era Mataram 1600 dan kondisi 2025, serta klik marker untuk membuka model 3D bangunan di panel kanan.</p>
+        <p class="webgis-tag">Leaflet.js &nbsp;&middot;&nbsp; Three.js r128 &nbsp;&middot;&nbsp; OpenStreetMap</p>
+      </div>
+      <div class="webgis-instruksi">
+        <div class="webgis-instruksi-label">Cara Penggunaan</div>
+        <div class="instruksi-item">
+          <div class="instruksi-num">1</div>
+          Pilih era tampilan di tombol Era Bar bagian bawah peta
+        </div>
+        <div class="instruksi-item">
+          <div class="instruksi-num">2</div>
+          Klik marker di peta untuk membuka informasi dan model 3D
+        </div>
+        <div class="instruksi-item">
+          <div class="instruksi-num">3</div>
+          Geser slider waktu untuk transisi spasial 1600–2025
+        </div>
+        <div class="instruksi-item">
+          <div class="instruksi-num">4</div>
+          Gunakan panel kiri untuk menyaring layer dan mencari lokasi
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="webgis-embed-wrap">
+    <div class="embed-loading" id="embedLoading">Memuat WebGIS&hellip;</div>
+    <iframe
+      src="webgis.html"
+      title="WebGIS 3D Kotagede"
+      allowfullscreen
+      onload="document.getElementById('embedLoading').style.display='none'"
+    ></iframe>
+  </div>
+
+  <div class="webgis-info">
+    <div class="winfo-grid">
+      <div class="winfo-card">
+        <h4>Basemap</h4>
+        <p>OpenStreetMap digunakan sebagai peta dasar untuk kedua era, memudahkan orientasi spasial pengguna modern.</p>
+      </div>
+      <div class="winfo-card">
+        <h4>Layer 1600</h4>
+        <p>Rekonstruksi lokasi pusat kerajaan, masjid, makam, benteng, dan permukiman era Mataram Islam berdasarkan data arkeologis.</p>
+      </div>
+      <div class="winfo-card">
+        <h4>Layer 2025</h4>
+        <p>Kondisi terkini kawasan Kotagede — kawasan cagar budaya, jalan, dan permukiman tradisional yang masih aktif.</p>
+      </div>
+      <div class="winfo-card">
+        <h4>Model 3D</h4>
+        <p>Klik marker untuk memuat model 3D bangunan bersejarah yang dirender langsung menggunakan Three.js di panel kanan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TENTANG -->
+<section id="tentang">
+  <div class="container reveal">
+    <span class="sec-eyebrow">Tentang Proyek</span>
+    <h2 class="sec-judul">Latar Belakang & Metodologi</h2>
+    <div class="sec-garis"></div>
+    <div class="tentang-layout">
+      <div class="tentang-teks">
+        <p>Proyek <em>Jejak Spasial Kotagede</em> berangkat dari kebutuhan untuk memvisualisasikan warisan budaya Mataram Islam secara spasial dan dapat diakses publik. Dengan mengintegrasikan metodologi Historical GIS (HGIS), model 3D berbasis browser, dan WebGIS responsif, platform ini dirancang sekaligus sebagai media edukasi dan pendukung penelitian arkeologi.</p>
+        <p>Tinggalan arkeologis berupa struktur kota, bangunan keagamaan, kompleks makam, dan pola permukiman tradisional memberikan informasi penting mengenai teknologi bangunan, sistem pemerintahan, dan dinamika budaya masyarakat Mataram Islam abad ke-16. Semua informasi ini disajikan dalam satu antarmuka yang dapat dieksplorasi secara interaktif.</p>
+        <h3>Fitur Platform</h3>
+        <ul class="fitur-list">
+          <li><span class="fi-kode">MAP</span>Peta interaktif dua era dengan basemap OpenStreetMap dan layer historis yang dapat diaktifkan</li>
+          <li><span class="fi-kode">3D</span>Visualisasi model 3D arsitektur tradisional Jawa secara real-time menggunakan Three.js</li>
+          <li><span class="fi-kode">TIME</span>Slider timeline perbandingan spasial 1600–2025 dengan transisi mulus</li>
+          <li><span class="fi-kode">INFO</span>Panel informasi detail setiap situs dengan data dan konteks arkeologis</li>
+          <li><span class="fi-kode">RWD</span>Desain responsif yang dapat diakses dari berbagai perangkat dan ukuran layar</li>
+        </ul>
+      </div>
+      <div>
+        <div class="tech-card">
+          <div class="tech-card-head"><h3>Teknologi yang Digunakan</h3></div>
+          <div class="tech-item">
+            <span class="tech-badge">MAP</span>
+            <span class="tech-name">Leaflet.js v1.9</span>
+            <span class="tech-desc">WebGIS interaktif</span>
+          </div>
+          <div class="tech-item">
+            <span class="tech-badge">3D</span>
+            <span class="tech-name">Three.js r128</span>
+            <span class="tech-desc">Model arsitektur</span>
+          </div>
+          <div class="tech-item">
+            <span class="tech-badge">BASE</span>
+            <span class="tech-name">OpenStreetMap</span>
+            <span class="tech-desc">Basemap utama</span>
+          </div>
+          <div class="tech-item">
+            <span class="tech-badge">GIS</span>
+            <span class="tech-name">QGIS / ArcGIS</span>
+            <span class="tech-desc">Pra-proses data spasial</span>
+          </div>
+          <div class="tech-item">
+            <span class="tech-badge">FE</span>
+            <span class="tech-name">HTML / CSS / JS</span>
+            <span class="tech-desc">Frontend tanpa framework</span>
+          </div>
+          <div class="tech-item">
+            <span class="tech-badge">DATA</span>
+            <span class="tech-name">GeoJSON</span>
+            <span class="tech-desc">Format data spasial</span>
+          </div>
+        </div>
+        <div class="metode-card">
+          <div class="metode-card-label">Metode Penelitian</div>
+          <div class="metode-item">Historical GIS (HGIS) untuk rekonstruksi spasial historis</div>
+          <div class="metode-item">Georeferensi peta historis Mataram Islam</div>
+          <div class="metode-item">Studi literatur arkeologi dan sejarah kawasan</div>
+          <div class="metode-item">Survey lapangan dan dokumentasi tinggalan budaya</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIM -->
+<section id="tim">
+  <div class="container reveal">
+    <span class="sec-eyebrow">Tim Penyusun</span>
+    <h2 class="sec-judul">Tim 1 &nbsp;&middot;&nbsp; SIG Terapan 2025–2026</h2>
+    <div class="sec-garis"></div>
+    <p style="font-size:13px;color:var(--abu);max-width:520px;line-height:1.8">Proyek ini dikerjakan oleh mahasiswa Program Studi Teknik Geomatika, UPN "Veteran" Yogyakarta, sebagai luaran mata kuliah SIG Terapan semester genap 2025–2026.</p>
+    <div class="tim-grid">
+      <div class="tim-card">
+        <div class="tim-avatar" style="background:#4a2008">FZ</div>
+        <h3>Fauzan Zaidan</h3>
+        <div class="tim-peran">Ketua Tim · Koordinator Penelitian</div>
+        <span class="tim-badge badge-ketua">Ketua Tim</span>
+      </div>
+      <div class="tim-card">
+        <div class="tim-avatar" style="background:#2d5a0e">RW</div>
+        <h3>Riwoo</h3>
+        <div class="tim-peran">Pengembang WebGIS & Analisis Spasial</div>
+        <span class="tim-badge badge-anggota">Anggota</span>
+      </div>
+      <div class="tim-card">
+        <div class="tim-avatar" style="background:#6b3410">DV</div>
+        <h3>David</h3>
+        <div class="tim-peran">Pemodelan 3D & Visualisasi</div>
+        <span class="tim-badge badge-anggota">Anggota</span>
+      </div>
+      <div class="tim-card">
+        <div class="tim-avatar" style="background:#1a4a7a">A4</div>
+        <h3>Anggota 4</h3>
+        <div class="tim-peran">Data Geospasial & Kartografi</div>
+        <span class="tim-badge badge-anggota">Anggota</span>
+      </div>
+      <div class="tim-card">
+        <div class="tim-avatar" style="background:#7a4a08">A5</div>
+        <h3>Anggota 5</h3>
+        <div class="tim-peran">Dokumentasi & Penulisan Ilmiah</div>
+        <span class="tim-badge badge-anggota">Anggota</span>
+      </div>
+    </div>
+    <div class="afiliasi">
+      <div class="afiliasi-ikon">&#127963;</div>
+      <div class="afiliasi-teks">
+        <h4>Program Studi Teknik Geomatika</h4>
+        <p>UPN "Veteran" Yogyakarta &nbsp;&middot;&nbsp; Fakultas Teknik dan Sains Terapan<br>Mata Kuliah: SIG Terapan &nbsp;&middot;&nbsp; Semester Genap 2025–2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Jejak Spasial Kotagede</div>
+  <p>Proyek Arkeologi Vertikal &nbsp;&middot;&nbsp; SIG Terapan &nbsp;&middot;&nbsp; Teknik Geomatika</p>
+  <div class="footer-garis"></div>
+  <p>UPN "Veteran" Yogyakarta &nbsp;&middot;&nbsp; &copy; 2026</p>
+</footer>
+
+<script>
+// Nav active on scroll
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  document.querySelectorAll('section[id]').forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) cur = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
