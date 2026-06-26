@@ -1,0 +1,85 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "masjid",
+        "name": "Masjid Gedhe Mataram",
+        "type": "Keagamaan",
+        "tahun": 1589,
+        "kondisi": "Baik"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [110.4015, -7.8298],
+          [110.4023, -7.8298],
+          [110.4023, -7.8306],
+          [110.4015, -7.8306],
+          [110.4015, -7.8298]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "makam",
+        "name": "Makam Kerajaan Mataram",
+        "type": "Pemakaman Kerajaan",
+        "tahun": 1589,
+        "kondisi": "Baik"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [110.4030, -7.8288],
+          [110.4038, -7.8288],
+          [110.4038, -7.8298],
+          [110.4030, -7.8298],
+          [110.4030, -7.8288]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "pasar",
+        "name": "Pasar Kotagede",
+        "type": "Perdagangan",
+        "tahun": 1600,
+        "kondisi": "Aktif"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [110.4040, -7.8328],
+          [110.4050, -7.8328],
+          [110.4050, -7.8336],
+          [110.4040, -7.8336],
+          [110.4040, -7.8328]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "benteng",
+        "name": "Sisa Benteng Cepuri",
+        "type": "Pertahanan",
+        "tahun": 1580,
+        "kondisi": "Rusak sebagian"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [110.4000, -7.8314],
+          [110.4012, -7.8314],
+          [110.4012, -7.8322],
+          [110.4000, -7.8322],
+          [110.4000, -7.8314]
+        ]]
+      }
+    }
+  ]
+}

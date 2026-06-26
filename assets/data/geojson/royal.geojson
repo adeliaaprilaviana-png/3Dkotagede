@@ -1,0 +1,42 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kawasan Keraton Kotagede",
+        "periode": "1578–1613",
+        "raja": "Panembahan Senopati",
+        "keterangan": "Pusat Kerajaan Mataram Islam pertama sebelum dipindah ke Kerto"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [110.3998, -7.8285],
+          [110.4045, -7.8285],
+          [110.4045, -7.8335],
+          [110.3998, -7.8335],
+          [110.3998, -7.8285]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Alun-Alun Kotagede",
+        "periode": "1580–sekarang",
+        "keterangan": "Alun-alun utama di depan masjid kerajaan"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [110.4005, -7.8295],
+          [110.4018, -7.8295],
+          [110.4018, -7.8308],
+          [110.4005, -7.8308],
+          [110.4005, -7.8295]
+        ]]
+      }
+    }
+  ]
+}

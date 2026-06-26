@@ -1,0 +1,33 @@
+/* ============================================================
+   variables.css — Design tokens & CSS custom properties
+   WebGIS Arkeologi Vertikal · Kotagede
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* ── Colour palette ── */
+  --bg:        #f8f7f3;
+  --bg2:       #f0efe9;
+  --bg3:       #e6e4dc;
+  --panel:     #ffffff;
+  --border:    #dddbd2;
+  --border2:   #cccac0;
+  --text:      #18180f;
+  --muted:     #696860;
+  --faint:     #9c9a8e;
+  --green:     #2d5a0e;
+  --green-mid: #3d7a14;
+  --green-bg:  #eaf2e0;
+  --amber:     #8a5c0a;
+  --red:       #8a2a1a;
+  --blue:      #1a4a7a;
+
+  /* ── Typography ── */
+  --serif:     Georgia, "Times New Roman", serif;
+  --sans:      ui-sans-serif, system-ui, -apple-system, sans-serif;
+}

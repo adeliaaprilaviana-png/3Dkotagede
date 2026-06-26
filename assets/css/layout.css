@@ -1,0 +1,48 @@
+/* ============================================================
+   layout.css — Shell, body grid, and main wrapper layout
+   WebGIS Arkeologi Vertikal · Kotagede
+   ============================================================ */
+
+html, body {
+  height: 100%;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* ── Shell layout ── */
+.shell {
+  display: grid;
+  grid-template-rows: 48px 1fr;
+  height: 100vh;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 236px 1fr 320px;
+  overflow: hidden;
+}
+
+/* ── Topbar ── */
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 16px; background: var(--panel); border-bottom: 1px solid var(--border);
+  gap: 12px;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-icon {
+  width: 26px; height: 26px; border-radius: 6px;
+  background: var(--green); display: grid; place-items: center;
+  color: #fff; font-size: 13px; flex-shrink: 0;
+}
+.brand-text { font-weight: 600; font-size: 13px; }
+.brand-sub  { font-weight: 400; color: var(--muted); margin-left: 4px; }
+.topnav { display: flex; gap: 2px; }
+.topnav a {
+  font-size: 12px; color: var(--muted); padding: 4px 10px;
+  border-radius: 6px; text-decoration: none; transition: .15s;
+}
+.topnav a:hover, .topnav a.active { background: var(--bg2); color: var(--text); }
+.top-meta { font-size: 11px; color: var(--faint); }

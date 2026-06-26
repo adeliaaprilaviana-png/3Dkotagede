@@ -1,0 +1,62 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kampung Alun-Alun",
+        "jenis": "Permukiman Tradisional",
+        "penduduk_est": 320,
+        "keterangan": "Kampung di sekitar alun-alun dengan rumah-rumah Jawa tradisional"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [110.3998, -7.8285],
+          [110.4020, -7.8285],
+          [110.4020, -7.8300],
+          [110.3998, -7.8300],
+          [110.3998, -7.8285]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kampung Jagalan",
+        "jenis": "Permukiman Campuran",
+        "penduduk_est": 480,
+        "keterangan": "Permukiman padat di koridor utama Kotagede"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [110.4020, -7.8300],
+          [110.4055, -7.8300],
+          [110.4055, -7.8340],
+          [110.4020, -7.8340],
+          [110.4020, -7.8300]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kampung Purbayan",
+        "jenis": "Permukiman Tradisional",
+        "penduduk_est": 260,
+        "keterangan": "Kampung tua dekat benteng dengan banyak rumah limasan"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [110.3985, -7.8310],
+          [110.4010, -7.8310],
+          [110.4010, -7.8345],
+          [110.3985, -7.8345],
+          [110.3985, -7.8310]
+        ]]
+      }
+    }
+  ]
+}

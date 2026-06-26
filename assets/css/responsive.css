@@ -1,0 +1,69 @@
+/* ============================================================
+   responsive.css — Media queries for responsive layout
+   WebGIS Arkeologi Vertikal · Kotagede
+   ============================================================ */
+
+/* ── Tablet: ≤ 1024px ── */
+@media (max-width: 1024px) {
+  .body {
+    grid-template-columns: 200px 1fr 280px;
+  }
+}
+
+/* ── Small tablet / large mobile: ≤ 768px ── */
+@media (max-width: 768px) {
+  .shell {
+    grid-template-rows: 48px 1fr;
+  }
+
+  .body {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .right-panel {
+    border-left: none;
+    border-top: 1px solid var(--border);
+    max-height: 40vh;
+  }
+
+  .era-bar {
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .era-btn {
+    font-size: 10px;
+    padding: 4px 10px;
+  }
+
+  .topnav a {
+    font-size: 11px;
+    padding: 4px 7px;
+  }
+
+  .top-meta { display: none; }
+
+  .drawer {
+    width: 100vw;
+  }
+}
+
+/* ── Mobile: ≤ 480px ── */
+@media (max-width: 480px) {
+  .brand-sub { display: none; }
+
+  .topbar {
+    padding: 0 10px;
+  }
+
+  .era-btn {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "gapura-paduraksa",
+        "name": "Gapura Paduraksa",
+        "deskripsi": "Gapura berlapis penanda zona sakral makam kerajaan",
+        "abad": "XVI",
+        "status": "Cagar Budaya"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4031, -7.8290]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sendang-seliran",
+        "name": "Sendang Seliran",
+        "deskripsi": "Kolam pemandian kakung dan putri dalam kompleks makam",
+        "abad": "XVI",
+        "status": "Cagar Budaya"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4036, -7.8295]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "sumur-gumuling",
+        "name": "Sumur Gumuling",
+        "deskripsi": "Sumur tua peninggalan masa Kerajaan Mataram",
+        "abad": "XVI",
+        "status": "Cagar Budaya"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4018, -7.8305]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "kampung-perak",
+        "name": "Kampung Pandai Perak",
+        "deskripsi": "Kawasan pengrajin perak tradisional Kotagede",
+        "abad": "XVII",
+        "status": "Warisan Budaya Tak Benda"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [110.4042, -7.8320]
+      }
+    }
+  ]
+}

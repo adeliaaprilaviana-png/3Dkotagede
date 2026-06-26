@@ -1,0 +1,280 @@
+/* ============================================================
+   map.css — Leaflet map, timeline, era bar, and slider
+   WebGIS Arkeologi Vertikal · Kotagede
+   ============================================================ */
+
+/* ── Map area ── */
+.map-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+#map { flex: 1; }
+
+/* ── Era bar ── */
+.era-bar {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  z-index: 900;
+  box-shadow: 0 1px 8px rgba(0,0,0,.10);
+}
+
+.era-btns { display: flex; gap: 2px; }
+
+.basemap-label {
+  font-size: 9px;
+  color: var(--faint);
+  padding: 0 10px 2px;
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+
+.era-btn {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 16px;
+  border-radius: 99px;
+  border: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--muted);
+  transition: .15s;
+  white-space: nowrap;
+}
+
+.era-btn.active { background: var(--green); color: #fff; }
+
+/* ── Timeline bar ── */
+.time-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  padding: 10px 16px 12px;
+  z-index: 900;
+}
+
+.time-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 4px;
+}
+
+.time-lbl { font-size: 11px; color: var(--muted); white-space: nowrap; }
+
+.yr-chip {
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--bg2);
+  border-radius: 5px;
+  padding: 2px 8px;
+  white-space: nowrap;
+  color: var(--text);
+}
+
+input[type=range] {
+  flex: 1;
+  accent-color: var(--green);
+  cursor: pointer;
+  height: 3px;
+}
+
+.tick-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--faint);
+}
+
+/* ── Emoji bubble marker ── */
+.mpin-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+  cursor: pointer;
+}
+
+.mpin-bubble {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--mc, #2d5a0e);
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.28),
+    0 0 0 1px rgba(0,0,0,.06),
+    0 0 12px -2px var(--mc, #2d5a0e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .18s;
+  position: relative;
+  z-index: 1;
+}
+
+.mpin-emoji {
+  font-size: 17px;
+  line-height: 1;
+  user-select: none;
+}
+
+.mpin-tail {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid var(--mc, #2d5a0e);
+  margin-top: -2px;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.25));
+}
+
+/* Hover: gelembung membesar */
+.mpin-wrap:hover .mpin-bubble {
+  transform: translateY(-3px) scale(1.12);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.32),
+    0 0 0 1px rgba(0,0,0,.06),
+    0 0 18px -2px var(--mc, #2d5a0e);
+}
+
+/* Pulse ring saat aktif */
+.mpin-pulse {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2.5px solid var(--pc, #2d5a0e);
+  opacity: 0;
+  animation: mpulse 1.8s ease-out infinite;
+  z-index: 0;
+}
+
+@keyframes mpulse {
+  0%   { transform: translateX(-50%) scale(.7);  opacity: .9; }
+  100% { transform: translateX(-50%) scale(1.7); opacity: 0;  }
+}
+
+.mpin-active .mpin-bubble {
+  border-width: 3.5px;
+  box-shadow:
+    0 4px 14px rgba(0,0,0,.3),
+    0 0 0 2px rgba(255,255,255,.5),
+    0 0 20px -2px var(--mc, #2d5a0e);
+}
+
+/* ── Leaflet overrides ── */
+
+.leaflet-control-zoom {
+  border: 1px solid var(--border) !important;
+  border-radius: 7px !important;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,.08) !important;
+}
+
+.leaflet-control-zoom a {
+  color: var(--text) !important;
+  background: var(--panel) !important;
+  border-bottom-color: var(--border) !important;
+  font-weight: 600 !important;
+}
+
+.leaflet-control-zoom a:hover { background: var(--bg2) !important; }
+
+/* ── Leaflet popup premium ── */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  box-shadow: 0 8px 28px rgba(0,0,0,.22), 0 1px 4px rgba(0,0,0,.12) !important;
+  padding: 0 !important;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  width: auto !important;
+  min-width: 180px;
+}
+
+.leaflet-popup-tip-container { margin-top: -1px; }
+
+/* ── Popup internal layout ── */
+.lp-wrap {
+  display: flex;
+  align-items: stretch;
+  min-width: 180px;
+  max-width: 240px;
+}
+
+.lp-color-bar {
+  width: 5px;
+  flex-shrink: 0;
+  border-radius: 0;
+}
+
+.lp-content {
+  padding: 10px 13px 10px 11px;
+  flex: 1;
+}
+
+.lp-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+}
+
+.lp-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.lp-icon-emoji { font-size: 14px; line-height: 1; }
+
+.lp-title {
+  font-weight: 700;
+  font-size: 12.5px;
+  line-height: 1.35;
+  margin-bottom: 3px;
+  color: var(--text, #1a1a1a);
+}
+
+.lp-sub {
+  font-size: 10.5px;
+  color: var(--muted, #666);
+  line-height: 1.45;
+  margin-bottom: 5px;
+}
+
+.lp-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-top: 3px;
+  letter-spacing: .02em;
+}
+

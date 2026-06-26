@@ -1,0 +1,40 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kali Gajah Wong",
+        "jenis": "Sungai",
+        "keterangan": "Sungai yang membatasi sisi timur kawasan Kotagede"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [110.4075, -7.8255],
+          [110.4072, -7.8285],
+          [110.4068, -7.8310],
+          [110.4065, -7.8345],
+          [110.4060, -7.8370]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Kali Buntung",
+        "jenis": "Anak Sungai",
+        "keterangan": "Anak sungai kecil di bagian barat kawasan"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [110.3985, -7.8280],
+          [110.3990, -7.8300],
+          [110.3995, -7.8325],
+          [110.4000, -7.8350]
+        ]
+      }
+    }
+  ]
+}

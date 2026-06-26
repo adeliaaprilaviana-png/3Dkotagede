@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Batas Kawasan Inti Kotagede",
+        "keterangan": "Batas kawasan cagar budaya Kotagede"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [110.3980, -7.8270],
+          [110.4070, -7.8270],
+          [110.4070, -7.8360],
+          [110.3980, -7.8360],
+          [110.3980, -7.8270]
+        ]]
+      }
+    }
+  ]
+}
