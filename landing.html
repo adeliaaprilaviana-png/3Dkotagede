@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jejak Spasial Kotagede — Narasi Sejarah</title>
+  <style>
+    /* Styling Dasar Landing Page */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      color: #333;
+      background-color: #fdfbf7;
+    }
+    header {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/images/hero-bg.jpg') no-repeat center center/cover;
+      background-color: #5a2a0a; /* Fallback warna sawo matang/kayu */
+      color: #fff;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+    }
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+    h2 {
+      color: #5a2a0a;
+      border-bottom: 2px solid #6b5a3a;
+      padding-bottom: 10px;
+    }
+    .intro-text {
+      font-size: 1.15rem;
+      text-align: justify;
+    }
+    
+    /* Styling Khusus Tempat Peta (WebGIS Container) */
+    .webgis-section {
+      background-color: #f0ede6;
+      padding: 40px 0 0 0;
+      text-align: center;
+    }
+    .webgis-section h2 {
+      margin-bottom: 30px;
+      display: inline-block;
+    }
+    .iframe-wrapper {
+      width: 100%;
+      height: 750px; /* Atur tinggi tampilan WebGIS di sini */
+      border: none;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    footer {
+      background-color: #222;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BAGIAN ATAS: Website Artikel / Narasi Biasa -->
+  <header>
+    <h1>JEJAK SPASIAL KOTAGEDE</h1>
+    <p>Menelusuri Lapisan Sejarah Ibu Kota Mataram Islam Melalui Arkeologi Vertikal</p>
+  </header>
+
+  <section class="container">
+    <h2>Pusat Kerajaan yang Terlupakan</h2>
+    <p class="intro-text">
+      Kotagede merupakan saksi bisu berdirinya dinamasti Kerajaan Mataram Islam pada abad ke-16. 
+      Dari sebuah alas (hutan) Mentaok, kawasan ini berkembang pesat menjadi pusat pemerintahan, 
+      ekonomi, dan keagamaan yang megah di bawah kepemimpinan Panembahan Senopati.
+    </p>
+    <p class="intro-text">
+      Melalui pendekatan <em>Historical GIS</em>, proyek ini merekonstruksi kembali tata ruang 
+      Kotagede pada kisaran tahun 1600-an dan membandingkannya secara vertikal dengan lansekap modern saat ini.
+    </p>
+    <p style="text-align: center; font-style: italic; margin-top: 40px; color: #6b5a3a;">
+      ⬇ Gulir ke bawah untuk mulai mengeksplorasi peta interaktif dan model rekonstruksi 3D ⬇
+    </p>
+  </section>
+
+  <!-- BAGIAN BAWAH: Tempat Menyematkan WebGIS Anda -->
+  <section class="webgis-section">
+    <h2>Eksplorasi WebGIS 3D Kotagede</h2>
+    <div class="iframe-wrapper">
+      <!-- PANGGIL FILE HTML WEBGIS SEBELUMNYA DI SINI -->
+      <!-- Jika file WebGIS kamu bernama 'index.html' dan satu folder, cukup tulis src="index.html" -->
+      <iframe src="index.html"></iframe>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Proyek Arkeologi Vertikal — SIG Terapan Kotagede</p>
+  </footer>
+
+</body>
+</html>
