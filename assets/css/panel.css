@@ -1,218 +1,54 @@
-/* ============================================================
-   panel.css — Right panel, 3D viewer, metadata, accuracy bar
-   WebGIS Arkeologi Vertikal · Kotagede
-   ============================================================ */
+/* ── Referensi section ── */
+.rp-refs {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-family: var(--sans);
+}
 
-/* ── Right panel ── */
-.right-panel {
-  background: var(--panel);
-  border-left: 1px solid var(--border);
+.rp-refs strong {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.03em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.rp-refs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  gap: 6px;
 }
 
-.rp-head {
-  padding: 11px 14px 10px;
-  border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
-}
-
-.rp-head h2 {
-  font-family: var(--serif);
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 1.35;
-  margin-bottom: 5px;
-}
-
-.era-tag {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 600;
-  background: var(--green-bg);
-  color: var(--green);
-  padding: 2px 8px;
-  border-radius: 4px;
-  letter-spacing: .02em;
-}
-
-.era-tag.mod { background: #e5edf8; color: var(--blue); }
-
-/* ── 3D Viewer ── */
-.viewer-wrap {
+.rp-refs ul li {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.55;
+  padding-left: 12px;
   position: relative;
-  flex-shrink: 0;
-  height: 220px;
-  background: #1a1e17;
-  border-bottom: 1px solid var(--border);
-  overflow: hidden;
 }
 
-#viewer3d { width: 100%; height: 100%; display: block; }
-
-.viewer-label {
+.rp-refs ul li::before {
+  content: '';
   position: absolute;
-  bottom: 8px;
-  left: 10px;
-  font-size: 10px;
-  color: rgba(255,255,255,.5);
-  pointer-events: none;
-}
-
-.viewer-controls {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.vc-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,.18);
-  background: rgba(0,0,0,.55);
-  color: rgba(255,255,255,.85);
-  font-size: 16px;
-  line-height: 1;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  transition: background .15s, transform .1s, border-color .15s;
-  user-select: none;
-  backdrop-filter: blur(4px);
-}
-
-.vc-btn:hover {
-  background: rgba(255,255,255,.18);
-  border-color: rgba(255,255,255,.35);
-}
-
-.vc-btn:active {
-  transform: scale(.9);
-  background: rgba(255,255,255,.28);
-}
-
-/* Zoom in → warna hijau samar saat hover */
-#vcZoomIn:hover  { background: rgba(80,180,100,.35); border-color: rgba(80,180,100,.5); }
-/* Zoom out → warna merah samar saat hover */
-#vcZoomOut:hover { background: rgba(200,80,80,.35);  border-color: rgba(200,80,80,.5); }
-
-/* ── Info body ── */
-.rp-body {
-  padding: 12px 14px;
-  overflow-y: auto;
-  flex: 1;
-}
-
-.info-desc {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.65;
-  margin-bottom: 12px;
-}
-
-.divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin-bottom: 10px;
-}
-
-.meta-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 11px;
-}
-
-.meta-table td {
-  padding: 4px 0;
-  border-bottom: 1px solid var(--border);
-  color: var(--muted);
-  vertical-align: top;
-}
-
-.meta-table td:first-child { width: 48%; }
-
-.meta-table td:last-child {
-  color: var(--text);
-  text-align: right;
-  padding-left: 6px;
-}
-
-/* Accuracy bar */
-.accuracy-row {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 10px;
-}
-
-.accuracy-bar {
-  flex: 1;
+  left: 0;
+  top: 7px;
+  width: 4px;
   height: 4px;
-  background: var(--bg3);
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.accuracy-fill {
-  height: 100%;
-  border-radius: 99px;
+  border-radius: 50%;
   background: var(--green-mid);
-  transition: width .4s;
 }
 
-.accuracy-label { font-size: 10px; color: var(--faint); white-space: nowrap; }
-
-/* ── Panel footer ── */
-.rp-foot {
-  padding: 10px 14px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  gap: 6px;
-  flex-shrink: 0;
-}
-
-.btn {
-  flex: 1;
-  padding: 6px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: transparent;
+/* ── Kategori label ── */
+.rp-head [style*="text-dim"] {
+  font-family: var(--sans);
   font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--text);
-  transition: .15s;
+  color: var(--muted);
+  margin-top: 5px;
 }
-
-.btn:hover { background: var(--bg2); }
-.btn.primary { background: var(--green); color: #fff; border-color: var(--green); }
-.btn.primary:hover { background: var(--green-mid); }
-
-.src-note {
-  padding: 8px 14px;
-  font-size: 10px;
-  color: var(--faint);
-  border-top: 1px solid var(--border);
-  line-height: 1.6;
-  flex-shrink: 0;
-}
-
-/* ── Empty state ── */
-.empty-state {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: var(--faint);
-  padding: 24px;
-}
-
-.empty-state span:first-child { font-size: 28px; }
-.empty-state p { font-size: 12px; text-align: center; line-height: 1.5; }
