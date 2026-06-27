@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arkeologi Vertikal — WebGIS 3D Kotagede</title>
+  <title>WebGIS 3D Kotagede — Arkeologi Vertikal</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
   <link rel="stylesheet" href="assets/css/variables.css" />
   <link rel="stylesheet" href="assets/css/layout.css" />
   <link rel="stylesheet" href="assets/css/sidebar.css" />
@@ -31,7 +30,7 @@
     <nav class="topnav">
       <a href="#" class="active">Peta &amp; Model</a>
     </nav>
-    <div class="top-meta">SIG Terapan · Kotagede, Yogyakarta</div>
+    <div class="top-meta">SIG Terapan &nbsp;&middot;&nbsp; Kotagede, Yogyakarta</div>
   </header>
 
   <div class="body">
@@ -40,22 +39,6 @@
       <div class="sb-search">
         <input type="text" id="searchInput" placeholder="Cari situs, kawasan, bangunan..." />
         <div id="searchResults" class="search-results"></div>
-      </div>
-
-      <div class="layer-group" id="group1600">
-        <div class="lg-title">Rekonstruksi 1600</div>
-        <div class="layer-row">
-          <div class="lr-left"><div class="swatch" style="background:#5a2a0a"></div>Pusat kerajaan</div>
-          <button class="tog" data-layer="royal"></button>
-        </div>
-        <div class="layer-row">
-          <div class="lr-left"><div class="swatch" style="background:#3d6614"></div>Permukiman lama</div>
-          <button class="tog" data-layer="settlement"></button>
-        </div>
-        <div class="layer-row">
-          <div class="lr-left"><div class="swatch" style="background:#6b5a3a; opacity:.8"></div>Batas kawasan</div>
-          <button class="tog" data-layer="boundary"></button>
-        </div>
       </div>
 
       <div class="sb-head">Lokasi Penting</div>
@@ -70,7 +53,7 @@
           <button class="era-btn active" data-era="1600">Mataram 1600</button>
           <button class="era-btn" data-era="2025">Kotagede 2025</button>
         </div>
-        <div class="basemap-label" id="basemapLabel">🗺 Peta Historis (Stamen Watercolor)</div>
+        <div class="basemap-label" id="basemapLabel">Basemap: Peta Historis</div>
       </div>
 
       <div class="time-bar">
@@ -89,8 +72,16 @@
 
     <aside class="right-panel" id="rightPanel">
       <div id="emptyState" class="empty-state">
-        <span>🗺</span>
-        <p>Klik marker di peta atau pilih lokasi di sebelah kiri untuk melihat model 3D dan informasi lokasi.</p>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:32px 20px;text-align:center;height:100%">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.2">
+            <rect x="3" y="8" width="42" height="32" rx="3" stroke="#2d5a0e" stroke-width="2"/>
+            <path d="M3 19L15 13L27 21L39 11L45 14" stroke="#2d5a0e" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="15" cy="13" r="2.5" fill="#2d5a0e"/>
+            <circle cx="27" cy="21" r="2.5" fill="#2d5a0e"/>
+            <circle cx="39" cy="11" r="2.5" fill="#2d5a0e"/>
+          </svg>
+          <p style="font-size:12px;color:var(--faint);line-height:1.65;max-width:160px">Pilih lokasi di panel kiri atau klik marker di peta untuk melihat model 3D dan detail situs.</p>
+        </div>
       </div>
     </aside>
 
